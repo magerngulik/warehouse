@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:skripsi_warehouse/core.dart';
 import 'package:skripsi_warehouse/main.dart';
