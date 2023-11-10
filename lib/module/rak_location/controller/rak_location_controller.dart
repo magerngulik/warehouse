@@ -46,10 +46,10 @@ class RakLocationController extends GetxController {
     var list =
         locationName.split('-'); // memisahkan string berdasarkan tanda hubung
     headTag = list[0];
-
     debugPrint(
         "location name: $locationName, id: $idHead, max lantai: $maxLantai, max rak: $maxRak");
     getDataLocation();
+    refreshAftarBuild();
   }
 
   getDataLocation() async {
@@ -93,5 +93,11 @@ class RakLocationController extends GetxController {
       kosong++;
       debugPrint("data terisi: $kosong");
     }
+  }
+
+  refreshAftarBuild() async {
+    await Future.delayed(const Duration(seconds: 1));
+    debugPrint("di refresh");
+    update();
   }
 }

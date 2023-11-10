@@ -115,8 +115,7 @@ class RakLocationView extends StatelessWidget {
                                 quantity: item['quantity']);
                             return InkWell(
                               onTap: () {
-                                debugPrint("Di tekan");
-                                Get.to(InputScansView(
+                                Get.off(UpdatedScansView(
                                   data: item,
                                 ))?.then((value) {
                                   controller.update();
@@ -158,7 +157,7 @@ class RakLocationView extends StatelessWidget {
             backgroundColor: baseColor,
             child: const Icon(Icons.add),
             onPressed: () {
-              Get.to(InputScansView(
+              Get.off(InputScansView(
                 data: {"head_location_id": controller.idHead},
               ))?.then((value) {
                 controller.update();

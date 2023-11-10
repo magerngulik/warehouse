@@ -30,8 +30,4 @@ class WarehouseServices {
 
     return result;
   }
-
-  
-  
-  
 }
