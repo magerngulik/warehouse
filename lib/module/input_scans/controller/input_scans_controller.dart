@@ -25,13 +25,15 @@ class InputScansController extends GetxController {
   Map? data;
 
   Map? dataUpdate;
-  InputScansController({this.data, this.dataUpdate});
+  Map? dataSearch;
+  InputScansController({this.data, this.dataUpdate, this.dataSearch});
 
   //variable datang
   var partNumberController = TextEditingController();
   var locationFieldController = "";
   var idLocationController = 0;
   var quantityController = TextEditingController();
+  var searchTextfieldController = TextEditingController();
 
   int partNumberid = 0;
   int? stock;
@@ -55,6 +57,8 @@ class InputScansController extends GetxController {
   String emailUser = "";
   String usernameUser = "";
 
+  //location search
+
   var log = Logger();
   @override
   void onInit() {
@@ -65,6 +69,8 @@ class InputScansController extends GetxController {
     getDataLocation();
     getUserDetail();
   }
+
+  setLocationSearch() {}
 
   getUserDetail() async {
     Future.delayed(const Duration(seconds: 1));
@@ -94,12 +100,18 @@ class InputScansController extends GetxController {
 
   getDataHeadLocation() async {
     if (dataUpdate == null) {
-      if (data!['head_location_id'] == 0) {
-        await Future.delayed(const Duration(seconds: 3));
-        Get.dialog(const QDialog(message: "gagal mendapatkan lokasi"));
+      if (dataSearch != null) {
+        idHead = dataSearch!['head_location_id'];
+        idLocationController = dataSearch!['id'];
+        searchTextfieldController.text = dataSearch!['head_name'];
       } else {
-        idHead = data!['head_location_id'];
-        debugPrint("id head: $idHead");
+        if (data!['head_location_id'] == 0) {
+          await Future.delayed(const Duration(seconds: 3));
+          Get.dialog(const QDialog(message: "gagal mendapatkan lokasi"));
+        } else {
+          idHead = data!['head_location_id'];
+          debugPrint("id head: $idHead");
+        }
       }
     } else {
       log.f(dataUpdate);
@@ -434,13 +446,18 @@ class InputScansController extends GetxController {
               const QDialog(message: "Data part number tidak boleh kosong"));
           return;
         } else if (locationFieldController == "") {
-          Get.dialog(const QDialog(message: "Data lokasi tidak boleh kosong"));
-          return;
+          if (dataSearch == null) {
+            Get.dialog(
+                const QDialog(message: "Data lokasi tidak boleh kosong"));
+
+            return;
+          }
         } else if (quantityController.text == "") {
           Get.dialog(
               const QDialog(message: "Data Quantity tidak boleh kosong"));
           return;
         }
+        //untuk mengambil data part number yang di tuju
         await cekPartNumber(partNumber: partNumberController.text);
 
         if (partNumberid == 0) {

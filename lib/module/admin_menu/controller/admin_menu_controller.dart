@@ -9,11 +9,36 @@ class AdminMenuController extends GetxController {
   AdminMenuView? view;
 
   List<Map<String, dynamic>> halaman = [
-    {"title": "Input Part Items", "ontap": const InputPartsView()},
-    {"title": "Input Head Location", "ontap": const HeadLocationView()},
-    {"title": "Input Location", "ontap": const LocationPartView()},
-    {"title": "List Part Area", "ontap": const ListPartView()},
-    {"title": "Manage Part Data", "ontap": const AdminListItemsView()},
+    {
+      "title": "Input Part Items",
+      "ontap": const InputPartsView(),
+      "image": "assets/icons/input item.png"
+    },
+    {
+      "title": "Input Head Location",
+      "ontap": const HeadLocationView(),
+      "image": "assets/icons/input head location.png"
+    },
+    {
+      "title": "Input Location",
+      "ontap": const LocationPartView(),
+      "image": "assets/icons/input location.png"
+    },
+    {
+      "title": "List Part Area",
+      "ontap": const ListPartView(),
+      "image": "assets/icons/list area part.png"
+    },
+    {
+      "title": "Manage Part Data",
+      "ontap": const AdminListItemsView(),
+      "image": "assets/icons/manage part data.png"
+    },
+    {
+      "title": "Kelola Akun",
+      "ontap": const AdminListItemsView(),
+      "image": "assets/icons/kelola akun.png"
+    },
   ];
 
   var isLoading = false.obs;

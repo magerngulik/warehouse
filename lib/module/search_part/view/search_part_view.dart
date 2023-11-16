@@ -48,16 +48,58 @@ class SearchPartView extends StatelessWidget {
                   height: MediaQuery.of(context).size.height,
                   child: const CircularProgressIndicator(),
                 )
-              : controller.partFilters
+              : !controller.partFilters
                   ? Container(
-                      height: 100.0,
                       decoration: const BoxDecoration(
-                        color: Colors.orange,
                         borderRadius: BorderRadius.all(
                           Radius.circular(
                             8.0,
                           ),
                         ),
+                      ),
+                      child: ListView.builder(
+                        itemCount: controller.dataLocation.isEmpty
+                            ? 1
+                            : controller.dataLocation.length,
+                        physics: const ScrollPhysics(),
+                        itemBuilder: (BuildContext context, int index) {
+                          if (controller.dataLocation.isEmpty) {
+                            return SizedBox(
+                              height: MediaQuery.of(context).size.height,
+                              child: const Center(
+                                child: Text(
+                                  "Belum ada data yang tersedia",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18.0,
+                                  ),
+                                ),
+                              ),
+                            );
+                          } else {
+                            var items = controller.dataLocation[index];
+
+                            return SizedBox(
+                              width: MediaQuery.of(context).size.width,
+                              child: InkWell(
+                                onTap: () {
+                                  Get.to(InputScansView(
+                                    dataSearch: items,
+                                  ));
+                                  controller.log.i(items);
+                                },
+                                child: Card(
+                                  color: Colors.white,
+                                  elevation: 2,
+                                  child: ListTile(
+                                    title: Text("${items['head_name']}"),
+                                    // subtitle: Text(result['head_name']),
+                                  ),
+                                ),
+                              ),
+                            );
+                          }
+                        },
                       ),
                     )
                   : Container(
@@ -90,6 +132,9 @@ class SearchPartView extends StatelessWidget {
                           } else {
                             var items = controller.dataPart[index];
                             var result = items['result_json'];
+                            var transaction = result['transaction'][0];
+                            controller.log.e(result);
+                            var part = transaction['part'];
 
                             return SizedBox(
                               width: MediaQuery.of(context).size.width,
@@ -100,16 +145,9 @@ class SearchPartView extends StatelessWidget {
                                 child: Card(
                                   color: Colors.white,
                                   elevation: 2,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(20.0),
-                                    child: Text(
-                                      "${result['head_name']}",
-                                      style: const TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 20.0,
-                                      ),
-                                    ),
+                                  child: ListTile(
+                                    title: Text("${part['part_name']}"),
+                                    subtitle: Text(result['head_name']),
                                   ),
                                 ),
                               ),

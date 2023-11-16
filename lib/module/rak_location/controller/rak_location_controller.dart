@@ -5,14 +5,12 @@ import 'package:logger/logger.dart';
 import 'package:skripsi_warehouse/core.dart';
 import 'package:skripsi_warehouse/main.dart';
 
-import '../view/rak_location_view.dart';
-
 class RakLocationController extends GetxController {
   @override
   void onClose() {
-    super.onClose();
     terisi = 0;
     kosong = 0;
+    super.onClose();
   }
 
   RakLocationView? view;

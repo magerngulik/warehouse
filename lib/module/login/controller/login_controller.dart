@@ -15,6 +15,12 @@ class LoginController extends GetxController {
     textPassword.text = "password";
   }
 
+  @override
+  void onClose() {
+    // TODO: implement onClose
+    super.onClose();
+  }
+
   LoginView? view;
 
   TextEditingController textEmail = TextEditingController();

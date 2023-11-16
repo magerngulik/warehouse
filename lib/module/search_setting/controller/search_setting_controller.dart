@@ -12,6 +12,12 @@ class SearchSettingController extends GetxController {
     getLoadSetting();
   }
 
+  @override
+  void onClose() {
+    // TODO: implement onClose
+    super.onClose();
+  }
+
   SearchSettingView? view;
 
   List<String> dataSearch = ["part number", "ruang kosong"];
@@ -26,8 +32,8 @@ class SearchSettingController extends GetxController {
     local.saveString("searchField", searchField);
     local.saveBool("isAcending", isAcending);
     local.saveBool("isMinim", isMinim);
-    Get.back();
     update();
+    Get.back();
   }
 
   getLoadSetting() async {

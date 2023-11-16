@@ -17,23 +17,7 @@ class UpdatedScansView extends StatelessWidget {
 
         return Scaffold(
             appBar: WarehouseAppbar(
-                title: "${data!["head_name"]} Locations",
-                actions: [
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.search,
-                      size: 24.0,
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.settings,
-                      size: 24.0,
-                    ),
-                  ),
-                ]),
+                title: "${data!["head_name"]} Locations", actions: const []),
             body: SingleChildScrollView(
               child: Container(
                 padding: const EdgeInsets.all(10.0),
@@ -144,6 +128,7 @@ class UpdatedScansView extends StatelessWidget {
                                     ),
                                   ),
                                   onPressed: () {
+                                    debugPrint("data update: $data");
                                     Get.to(InputScansView(
                                       dataUpdate: data,
                                     ));

@@ -44,9 +44,8 @@ class AdminMenuView extends StatelessWidget {
                   );
                 },
                 child: Container(
-                  decoration: BoxDecoration(
-                    color: baseColor,
-                    borderRadius: const BorderRadius.all(
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.all(
                       Radius.circular(12.0),
                     ),
                   ),
@@ -54,6 +53,23 @@ class AdminMenuView extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
+                      Container(
+                        height: 80,
+                        width: 80,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage(
+                              item["image"],
+                            ),
+                            fit: BoxFit.fitHeight,
+                          ),
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(
+                              8.0,
+                            ),
+                          ),
+                        ),
+                      ),
                       Text(
                         item['title'],
                         textAlign: TextAlign.center,

@@ -2,7 +2,8 @@
     "modules": [
         "updated_scans",
         "search_part",
-        "search_setting"
+        "search_setting",
+        "report_menu"
     ],
     "module_directory_name": "module",
     "experimental_mode": false,

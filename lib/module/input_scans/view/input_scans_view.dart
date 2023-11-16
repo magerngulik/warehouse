@@ -12,13 +12,19 @@ class InputScansView extends StatelessWidget {
   final Map? data;
 
   final Map? dataUpdate;
-  const InputScansView({Key? key, this.data, this.dataUpdate})
-      : super(key: key);
+  final Map? dataSearch;
+  const InputScansView({
+    Key? key,
+    this.data,
+    this.dataUpdate,
+    this.dataSearch,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<InputScansController>(
-      init: InputScansController(data: data, dataUpdate: dataUpdate),
+      init: InputScansController(
+          data: data, dataUpdate: dataUpdate, dataSearch: dataSearch),
       builder: (controller) {
         controller.view = this;
 
@@ -59,45 +65,69 @@ class InputScansView extends StatelessWidget {
                   ),
                   (dataUpdate != null)
                       ? Container()
-                      : Container(
-                          key: Key("key_${controller.idHead}"),
-                          margin: const EdgeInsets.symmetric(horizontal: 10.0),
-                          child: DropDownTextField(
-                            padding: EdgeInsets.zero,
-                            clearOption: false,
-                            dropDownItemCount: 8,
-                            searchShowCursor: false,
-                            enableSearch: true,
-                            initialValue: (dataUpdate != null)
-                                ? DropDownValueModel(
-                                    name: controller.headName,
-                                    value: controller.idHead)
-                                : null,
-                            textFieldDecoration: InputDecoration(
-                              suffixIcon: const Icon(Icons.qr_code),
-                              filled: true,
-                              fillColor: textfieldColor,
-                              hintText: "LOCATION",
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                  borderSide:
-                                      BorderSide(color: textfieldColor)),
+                      : Visibility(
+                          visible: dataSearch == null,
+                          replacement: Container(
+                            padding: const EdgeInsets.all(12),
+                            margin: const EdgeInsets.only(),
+                            child: TextFormField(
+                              initialValue: null,
+                              readOnly: true,
+                              controller: controller.searchTextfieldController,
+                              decoration: InputDecoration(
+                                filled: true,
+                                fillColor: textfieldColor,
+                                hintText: "LOCATION",
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide:
+                                        BorderSide(color: textfieldColor)),
+                              ),
+                              onChanged: (value) {},
                             ),
-                            searchKeyboardType: TextInputType.text,
-                            dropDownList: List.generate(
-                                controller.dataLocationReady.length, (index) {
-                              debugPrint(
-                                  "data id: ${controller.dataLocationReady.length}");
-                              var itemLocation =
-                                  controller.dataLocationReady[index];
-                              return DropDownValueModel(
-                                  name: itemLocation["head_name"],
-                                  value: itemLocation["id"]);
-                            }),
-                            onChanged: (dataval) {
-                              controller.locationFieldController = dataval.name;
-                              controller.idLocationController = dataval.value;
-                            },
+                          ),
+                          child: Container(
+                            key: Key("key_${controller.idHead}"),
+                            margin:
+                                const EdgeInsets.symmetric(horizontal: 10.0),
+                            child: DropDownTextField(
+                              padding: EdgeInsets.zero,
+                              clearOption: false,
+                              dropDownItemCount: 8,
+                              searchShowCursor: false,
+                              enableSearch: true,
+                              initialValue: (dataUpdate != null)
+                                  ? DropDownValueModel(
+                                      name: controller.headName,
+                                      value: controller.idHead)
+                                  : null,
+                              textFieldDecoration: InputDecoration(
+                                suffixIcon: const Icon(Icons.qr_code),
+                                filled: true,
+                                fillColor: textfieldColor,
+                                hintText: "LOCATION",
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide:
+                                        BorderSide(color: textfieldColor)),
+                              ),
+                              searchKeyboardType: TextInputType.text,
+                              dropDownList: List.generate(
+                                  controller.dataLocationReady.length, (index) {
+                                debugPrint(
+                                    "data id: ${controller.dataLocationReady.length}");
+                                var itemLocation =
+                                    controller.dataLocationReady[index];
+                                return DropDownValueModel(
+                                    name: itemLocation["head_name"],
+                                    value: itemLocation["id"]);
+                              }),
+                              onChanged: (dataval) {
+                                controller.locationFieldController =
+                                    dataval.name;
+                                controller.idLocationController = dataval.value;
+                              },
+                            ),
                           ),
                         ),
                   (dataUpdate != null)

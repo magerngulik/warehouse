@@ -14,14 +14,17 @@ class ReportView extends StatelessWidget {
         controller.view = this;
 
         return Scaffold(
-          appBar: AppBar(
-            title: const Text("Report"),
-          ),
+          appBar: const WarehouseAppbar(title: "Report Menu"),
           body: SingleChildScrollView(
             child: Container(
-              padding: const EdgeInsets.all(10.0),
               child: Column(
-                children: const [],
+                children: [
+                  Container(
+                    height: MediaQuery.of(context).size.height / 4,
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(color: baseColor),
+                  )
+                ],  
               ),
             ),
           ),

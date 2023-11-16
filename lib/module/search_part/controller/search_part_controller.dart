@@ -69,12 +69,12 @@ class SearchPartController extends GetxController {
               if (fieldName == "part number") {
                 debugPrint("kondisi location name");
                 debugPrint("data field: $fieldName");
-                processSearchLocation();
+                processSearchPart();
               } else {
                 debugPrint("kondisi part name");
                 debugPrint("data field: $fieldName");
                 //search ruang kosong
-                processSearchPart();
+                processSearchLocation();
               }
             },
           );
@@ -92,6 +92,7 @@ class SearchPartController extends GetxController {
           .like("head_name", "%${textSearch.text}%")
           .order("created_at", ascending: isAscending);
       log.f(data);
+      dataLocation = List<Map<String, dynamic>>.from(data);
     } catch (e) {
       debugPrint(e.toString());
     }

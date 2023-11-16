@@ -179,6 +179,8 @@ class UpdatedScansController extends GetxController {
               Get.back();
             },
           ));
+          debugPrint("-----------");
+
           return;
         }
 

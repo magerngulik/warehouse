@@ -14,7 +14,8 @@ class ListPartView extends StatelessWidget {
         controller.view = this;
 
         return Scaffold(
-          appBar: const WarehouseAppbar(title: "List Part Area Rak F"),
+          appBar:
+              const WarehouseAppbar(title: "List Part Area Rak F", actions: []),
           body: SingleChildScrollView(
             child: Container(
               padding: const EdgeInsets.all(10.0),
