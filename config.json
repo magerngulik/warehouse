@@ -1,6 +1,8 @@
 {
     "modules": [
-        "updated_scans"
+        "updated_scans",
+        "search_part",
+        "search_setting"
     ],
     "module_directory_name": "module",
     "experimental_mode": false,

@@ -30,4 +30,22 @@ class WarehouseServices {
 
     return result;
   }
+
+  static Future addHistoryTransaction(
+      {required int partId,
+      required int locationId,
+      required int quantity,
+      required int stock,
+      required String description,
+      required String userId}) async {
+    Map dataUpload = {
+      "part_id": partId,
+      "location_id": locationId,
+      "quantity": quantity,
+      "stock": stock,
+      "description": description,
+      "user_id": userId
+    };
+    await supabase.from('history').insert(dataUpload);
+  }
 }

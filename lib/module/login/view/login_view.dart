@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skripsi_warehouse/shared/widget/texfield/w_textfield_login.dart';
 import '../controller/login_controller.dart';
 import 'package:skripsi_warehouse/core.dart';
 import 'package:get/get.dart';
@@ -55,6 +56,13 @@ class LoginView extends StatelessWidget {
                         16.0,
                       ),
                     ),
+                  ),
+                ),
+                const Text(
+                  "e-Warning",
+                  style: TextStyle(
+                    fontSize: 30.0,
+                    color: Colors.grey,
                   ),
                 ),
                 const SizedBox(
@@ -120,64 +128,6 @@ class LoginView extends StatelessWidget {
           ),
         );
       },
-    );
-  }
-}
-
-class QTextFieldLogin extends StatelessWidget {
-  final IconData icon;
-  final TextEditingController txtController;
-  final bool? isPassword;
-  final String? initialValue;
-  const QTextFieldLogin({
-    super.key,
-    required this.icon,
-    required this.txtController,
-    this.isPassword,
-    this.initialValue,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Icon(
-          icon,
-          size: 50.0,
-        ),
-        const SizedBox(
-          height: 10.0,
-        ),
-        Expanded(
-          child: TextFormField(
-            initialValue: initialValue,
-            controller: txtController,
-            style: const TextStyle(color: Colors.black),
-            obscureText: isPassword ?? false,
-            decoration: InputDecoration(
-              labelStyle: const TextStyle(color: Colors.black),
-              contentPadding:
-                  const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20),
-              filled: true,
-              fillColor: Colors.white,
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(32),
-                borderSide: const BorderSide(color: Colors.green, width: 5),
-              ),
-              disabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(32),
-                borderSide: const BorderSide(color: Colors.green, width: 5),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(32),
-                borderSide: const BorderSide(color: Colors.green, width: 5),
-              ),
-            ),
-            onChanged: (value) {},
-          ),
-        )
-      ],
     );
   }
 }

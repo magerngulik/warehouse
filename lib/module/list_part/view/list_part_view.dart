@@ -28,6 +28,7 @@ class ListPartView extends StatelessWidget {
                         Get.to(RakLocationView(
                           data: item,
                         ));
+                        debugPrint("data from rak list data: $item");
                       },
                       child: Card(
                         color: Colors.white,

@@ -25,14 +25,18 @@ class RakLocationView extends StatelessWidget {
               title: "${controller.headTag} Location",
               actions: [
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.to(const SearchPartView());
+                  },
                   icon: const Icon(
                     Icons.search,
                     size: 24.0,
                   ),
                 ),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.to(const SearchSettingView());
+                  },
                   icon: const Icon(
                     Icons.settings,
                     size: 24.0,
@@ -97,6 +101,7 @@ class RakLocationView extends StatelessWidget {
                         )
                       : GridView.builder(
                           padding: EdgeInsets.zero,
+                          reverse: true,
                           gridDelegate:
                               SliverGridDelegateWithFixedCrossAxisCount(
                             childAspectRatio: 1.0,
@@ -113,13 +118,34 @@ class RakLocationView extends StatelessWidget {
                                 .extractDesiredPart(item['head_name']);
                             controller.tambahDataTerisi(
                                 quantity: item['quantity']);
+
+                            List transaction = item['transaction'];
                             return InkWell(
                               onTap: () {
-                                Get.off(UpdatedScansView(
-                                  data: item,
-                                ))?.then((value) {
-                                  controller.update();
-                                });
+                                controller.log.d("ini data log");
+                                controller.log.d(data);
+                                if (transaction.isEmpty) {
+                                  Get.to(InputScansView(
+                                    data: {
+                                      "head_location_id": controller.idHead
+                                    },
+                                  ))?.then((value) {
+                                    controller.getDataLocation();
+                                    controller.terisi = 0;
+                                    controller.kosong = 0;
+                                  });
+                                  debugPrint("empty data");
+                                } else {
+                                  debugPrint("data berisi");
+                                  Get.to(UpdatedScansView(
+                                    data: item,
+                                  ))?.then((value) {
+                                    // controller.terisi = 0;
+                                    // controller.kosong = 0;
+                                    // controller.getDataLocation();
+                                    // controller.refreshAftarBuild();
+                                  });
+                                }
                               },
                               child: Container(
                                 padding: const EdgeInsets.symmetric(
@@ -157,10 +183,12 @@ class RakLocationView extends StatelessWidget {
             backgroundColor: baseColor,
             child: const Icon(Icons.add),
             onPressed: () {
-              Get.off(InputScansView(
+              Get.to(InputScansView(
                 data: {"head_location_id": controller.idHead},
               ))?.then((value) {
-                controller.update();
+                controller.getDataLocation();
+                controller.terisi = 0;
+                controller.kosong = 0;
               });
             },
           ),

@@ -16,11 +16,8 @@ class RakLocationController extends GetxController {
   }
 
   RakLocationView? view;
-  Map data;
-  RakLocationController({
-    this.view,
-    required this.data,
-  });
+  Map? data;
+  RakLocationController({this.data});
 
   String locationName = "";
   int idHead = 0;
@@ -38,11 +35,13 @@ class RakLocationController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    log.f(data);
     debugPrint("data hari head: $data");
-    locationName = data['location_name'];
-    idHead = data['id'];
-    maxLantai = data['max_lantai'];
-    maxRak = data['max_rak'];
+    locationName = data!['location_name'];
+    debugPrint("--------------$locationName");
+    idHead = data!['id'];
+    maxLantai = data!['max_lantai'];
+    maxRak = data!['max_rak'];
     var list =
         locationName.split('-'); // memisahkan string berdasarkan tanda hubung
     headTag = list[0];
@@ -58,18 +57,16 @@ class RakLocationController extends GetxController {
       var data = await supabase
           .from("location")
           .select("*,transaction(*,part(*))")
-          .eq("head_location_id", idHead);
+          .eq("head_location_id", idHead)
+          .order("created_at", ascending: true);
 
       listData = RxList<Map<String, dynamic>>.from(data);
       isLoading = false;
       update();
       log.d(listData);
-      debugPrint("ini list data =  $listData");
-      debugPrint("Is Loading: $isLoading");
     } catch (e) {
       isLoading = false;
       update();
-      debugPrint("Is Loading: $isLoading");
       Get.dialog(QDialog(message: "Terjadi error pada server: $e"));
     }
   }

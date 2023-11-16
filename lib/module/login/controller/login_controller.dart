@@ -106,7 +106,6 @@ class LoginController extends GetxController {
       required String username,
       required String role}) async {
     final prefs = await SharedPreferences.getInstance();
-
     var local = SharedPreferencesService(prefs);
     local.saveString("uuid", uuid);
     local.saveString("email", email);
