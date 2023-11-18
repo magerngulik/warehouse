@@ -22,13 +22,14 @@ class InputPartsView extends StatelessWidget {
                 children: [
                   WarehouseTextfield(
                       hintTitle: "Part Number",
-                      controller: controller.productNameController),
+                      controller: controller.productNumberController),
                   WarehouseTextfield(
                       hintTitle: "Part Name",
                       controller: controller.productNameController),
                   WarehouseTextfield(
                       hintTitle: "Stock",
-                      controller: controller.stockController),
+                      controller: controller.stockController,
+                      readOnly: true),
                   WarehouseTextfield(
                       hintTitle: "Minimum",
                       controller: controller.minimalStockController),

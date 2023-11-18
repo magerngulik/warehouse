@@ -7,6 +7,13 @@ import '../../../main.dart';
 import '../view/input_parts_view.dart';
 
 class InputPartsController extends GetxController {
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+    stockController.text = 0.toString();
+  }
+
   InputPartsView? view;
   TextEditingController productNumberController = TextEditingController();
   TextEditingController productNameController = TextEditingController();
@@ -46,7 +53,13 @@ class InputPartsController extends GetxController {
         'minimum': minimalStockController.text,
       });
 
-      Get.dialog(const QDialog(message: "berhasil input data"));
+      Get.dialog(QDialog(
+        message: "berhasil input data",
+        ontap: () {
+          Get.back();
+        },
+      ));
+      // Get.back();
     } catch (e) {
       debugPrint(e.toString());
       if (e is PostgrestException) {

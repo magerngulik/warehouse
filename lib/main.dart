@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:skripsi_warehouse/core.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -20,13 +21,15 @@ Future<void> main() async {
   } else {
     mainapp = const LoginView();
   }
-
-  runApp(
-    GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: mainapp,
-    ),
-  );
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+      .then((_) {
+    runApp(
+      GetMaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: mainapp,
+      ),
+    );
+  });
 }
 
 final supabase = Supabase.instance.client;

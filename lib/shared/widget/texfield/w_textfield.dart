@@ -4,10 +4,12 @@ import 'package:skripsi_warehouse/shared/color/m_base_color.dart';
 class WarehouseTextfield extends StatelessWidget {
   final String hintTitle;
   final TextEditingController controller;
+  final bool? readOnly;
   const WarehouseTextfield({
     super.key,
     required this.hintTitle,
     required this.controller,
+    this.readOnly,
   });
 
   @override
@@ -19,6 +21,7 @@ class WarehouseTextfield extends StatelessWidget {
         // controller: controller.maxLantai,
         controller: controller,
         initialValue: null,
+        readOnly: readOnly ?? false,
         decoration: InputDecoration(
           filled: true,
           fillColor: textfieldColor,
