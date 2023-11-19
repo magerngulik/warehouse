@@ -97,30 +97,70 @@ class ReportController extends GetxController {
     // Add header row
     var excel = Excel.createExcel();
 
-    Sheet sheetObject = excel['SheetName'];
+    Sheet sheetObject = excel['dataReport'];
 
-    sheetObject.appendRow([
-      "ID",
-      "Head Name",
-      "Location ID",
-      "Quantity",
-      "Created At",
-      "Updated At",
-      "ID User"
-    ]);
+    // Add header row with styling
+    sheetObject.appendRow(
+      ["PART NUMBER", "PART NAME", "QUANTITY", "LOCATION", "TIMESTAMP", "USER"],
+    );
+    sheetObject.cell(CellIndex.indexByString("A1")).cellStyle =
+        CellStyle(backgroundColorHex: "#70ad47");
 
-    // Add data rows
+    sheetObject.cell(CellIndex.indexByString("B1")).cellStyle =
+        CellStyle(backgroundColorHex: "#70ad47");
+
+    sheetObject.cell(CellIndex.indexByString("C1")).cellStyle =
+        CellStyle(backgroundColorHex: "#70ad47");
+
+    sheetObject.cell(CellIndex.indexByString("D1")).cellStyle =
+        CellStyle(backgroundColorHex: "#70ad47");
+
+    sheetObject.cell(CellIndex.indexByString("E1")).cellStyle =
+        CellStyle(backgroundColorHex: "#70ad47");
+
+    sheetObject.cell(CellIndex.indexByString("F1")).cellStyle =
+        CellStyle(backgroundColorHex: "#70ad47");
+
+    sheetObject.setColumnWidth(0, 20.78);
+    sheetObject.setColumnWidth(1, 45.67);
+    sheetObject.setColumnWidth(2, 20.78);
+    sheetObject.setColumnWidth(3, 20.78);
+    sheetObject.setColumnWidth(4, 45.67);
+    sheetObject.setColumnWidth(5, 45.67);
+
+    // Add data rows with styling
     for (var data in allData) {
-      sheetObject.appendRow([
-        data["id"] ??
-            "kolak pisang", // Tambahkan default value atau aturan penanganan jika data null
-        data["head_name"] ?? "lalala",
-        data["head_location_id"] ?? "alalla",
-        data["quantity"] ?? "allal",
-        data["created_at"] ?? "alal",
-        data["updated_at"] ?? "adfaf",
-        data["id_user"] ?? "lalal",
-      ]);
+      String partNumber = data['transaction'].isNotEmpty
+          ? data['transaction'][0]['part']['part_number']
+          : '-';
+      String partName = data['transaction'].isNotEmpty
+          ? data['transaction'][0]['part']['part_name']
+          : '-';
+      int quantity = data['quantity'] ?? 0;
+      String location = data['head_name'].toString();
+
+      // Mengambil tanggal dari timestamp
+      String fullTimestamp = data['updated_at'] ?? '-';
+      String dateOnly = '-';
+
+      if (fullTimestamp != '-') {
+        DateTime dateTime = DateTime.parse(fullTimestamp);
+        dateOnly =
+            "${dateTime.year}-${dateTime.month.toString().padLeft(2, '0')}-${dateTime.day.toString().padLeft(2, '0')}";
+      }
+
+      String user = data['user']['username'] ?? '-';
+
+      sheetObject.appendRow(
+        [
+          partNumber,
+          partName,
+          quantity,
+          location,
+          dateOnly, // Menggunakan tanggal saja
+          user,
+        ],
+      );
     }
 
     var currentDate = DateTime.now();
@@ -152,8 +192,10 @@ class ReportController extends GetxController {
 
   getAllData() async {
     try {
-      final data =
-          await supabase.from('location').select('*,transaction(*,part(*))');
+      final data = await supabase
+          .from('location')
+          .select('*,user(*),transaction(*,part(*))')
+          .order('created_at', ascending: true);
       log.f(data);
       debugPrint(data.toString());
       allData = List.from(data);
