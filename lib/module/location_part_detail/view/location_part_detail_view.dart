@@ -101,18 +101,28 @@ class LocationPartDetailView extends StatelessWidget {
                                 onPressed: () {
                                   Navigator.pop(context);
                                 },
-                                child: const Text("No"),
+                                child: const Text(
+                                  "No",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                ),
                               ),
                               ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.blueGrey,
+                                  backgroundColor: Colors.red,
                                 ),
                                 onPressed: () {
                                   confirm = true;
                                   controller.deleteData(item['id']);
                                   Navigator.pop(context);
                                 },
-                                child: const Text("Yes"),
+                                child: const Text(
+                                  "Yes",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                ),
                               ),
                             ],
                           );

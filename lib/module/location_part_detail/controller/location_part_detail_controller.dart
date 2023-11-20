@@ -28,6 +28,7 @@ class LocationPartDetailController extends GetxController {
   deleteData(int id) async {
     try {
       await supabase.from('location').delete().match({'id': id});
+      Get.dialog(const QDialog(message: "Data berhasil di hapus"));
       update();
     } catch (e) {
       Get.dialog(QDialog(message: "Gagal Delete: ${e.toString()}"));

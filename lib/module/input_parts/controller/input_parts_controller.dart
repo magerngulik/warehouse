@@ -33,9 +33,9 @@ class InputPartsController extends GetxController {
   TextEditingController stockController = TextEditingController();
   TextEditingController minimalStockController = TextEditingController();
   int? idPart;
+  bool isLoading = false;
 
   inputPartData() async {
-    debugPrint("data print");
     String error = "";
     RegExp regex = RegExp(r'^-?[0-9]+$');
 
@@ -74,6 +74,7 @@ class InputPartsController extends GetxController {
           message: "berhasil input data",
           ontap: () {
             Get.back();
+            Get.back();
           },
         ));
         // Get.back();
@@ -85,6 +86,7 @@ class InputPartsController extends GetxController {
         }
       }
     } else {
+      debugPrint("kondisi update berjalan");
       if (item!['stock'] != int.parse(stockController.text)) {
         Get.dialog(QDialogDelete(
           message:
@@ -100,12 +102,15 @@ class InputPartsController extends GetxController {
   }
 
   doUpdate() async {
+    debugPrint("kondisi update berjalan");
     try {
       Map dataChange = {
-        "part_name": productNumberController.text,
+        "part_name": productNameController.text,
         "stock": stockController.text,
         "minimum": minimalStockController.text
       };
+
+      debugPrint("ini part name ${productNameController.text}");
 
       await supabase.from('part').update(dataChange).match({'id': idPart});
     } catch (e) {

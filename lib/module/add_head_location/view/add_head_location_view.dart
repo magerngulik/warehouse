@@ -100,7 +100,7 @@ class AddHeadLocationView extends StatelessWidget {
                             borderRadius: BorderRadius.circular(12),
                           ),
                           backgroundColor: baseColor),
-                      onPressed: () => controller.inputHeadLocation(),
+                      onPressed: () => controller.addNewHeadLocation(),
                       child: const Text(
                         "Submit",
                         style: TextStyle(

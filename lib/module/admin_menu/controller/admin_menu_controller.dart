@@ -9,11 +9,11 @@ class AdminMenuController extends GetxController {
   AdminMenuView? view;
 
   List<Map<String, dynamic>> halaman = [
-    {
-      "title": "Input Part Items",
-      "ontap": const InputPartsView(),
-      "image": "assets/icons/input item.png"
-    },
+    // {
+    //   "title": "Input Part Items",
+    //   "ontap": const InputPartsView(),
+    //   "image": "assets/icons/input item.png"
+    // },
     {
       "title": "Input Head Location",
       "ontap": const HeadLocationView(),

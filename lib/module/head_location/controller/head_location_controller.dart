@@ -18,7 +18,10 @@ class HeadLocationController extends GetxController {
   RxBool isLoading = true.obs;
   Future getDataHead() async {
     try {
-      final dataHead = await supabase.from('head_location').select('*');
+      final dataHead = await supabase
+          .from('head_location')
+          .select('*')
+          .order("created_at", ascending: true);
       data.assignAll(List<Map<String, dynamic>>.from(dataHead));
       isLoading.value = false;
     } catch (e) {
