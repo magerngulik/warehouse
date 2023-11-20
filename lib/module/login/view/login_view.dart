@@ -117,7 +117,7 @@ class LoginView extends StatelessWidget {
                           ),
                           onPressed: () => controller.exitApp(),
                           child: const Text(
-                            "Cencel",
+                            "Cancel",
                             style: TextStyle(
                               color: Colors.white,
                             ),

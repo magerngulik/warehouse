@@ -53,14 +53,24 @@ class QDialogDelete extends StatelessWidget {
             ? ElevatedButton(
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
                 onPressed: () => ontap!(),
-                child: const Text("Ok"),
+                child: const Text(
+                  "Ok",
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
               )
             : ElevatedButton(
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                child: const Text("Ok"),
+                child: const Text(
+                  "Ok",
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
               ),
       ],
     );

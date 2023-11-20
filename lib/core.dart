@@ -7,6 +7,8 @@ export 'package:skripsi_warehouse/module/add_head_location/controller/add_head_l
 export 'package:skripsi_warehouse/module/add_head_location/view/add_head_location_view.dart';
 export 'package:skripsi_warehouse/module/add_location_part/controller/add_location_part_controller.dart';
 export 'package:skripsi_warehouse/module/add_location_part/view/add_location_part_view.dart';
+export 'package:skripsi_warehouse/module/admin_detail_item/controller/admin_detail_item_controller.dart';
+export 'package:skripsi_warehouse/module/admin_detail_item/view/admin_detail_item_view.dart';
 export 'package:skripsi_warehouse/module/admin_list_items/controller/admin_list_items_controller.dart';
 export 'package:skripsi_warehouse/module/admin_list_items/view/admin_list_items_view.dart';
 export 'package:skripsi_warehouse/module/admin_menu/controller/admin_menu_controller.dart';
@@ -40,6 +42,8 @@ export 'package:skripsi_warehouse/module/rak_location/view/rak_location_view.dar
 export 'package:skripsi_warehouse/module/rak_location/widget/m_description.dart';
 export 'package:skripsi_warehouse/module/report/controller/report_controller.dart';
 export 'package:skripsi_warehouse/module/report/view/report_view.dart';
+export 'package:skripsi_warehouse/module/report_menu/controller/report_menu_controller.dart';
+export 'package:skripsi_warehouse/module/report_menu/view/report_menu_view.dart';
 export 'package:skripsi_warehouse/module/search_part/controller/search_part_controller.dart';
 export 'package:skripsi_warehouse/module/search_part/view/search_part_view.dart';
 export 'package:skripsi_warehouse/module/search_setting/controller/search_setting_controller.dart';

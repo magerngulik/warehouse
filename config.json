@@ -3,7 +3,8 @@
         "updated_scans",
         "search_part",
         "search_setting",
-        "report_menu"
+        "report_menu",
+        "admin_detail_item"
     ],
     "module_directory_name": "module",
     "experimental_mode": false,

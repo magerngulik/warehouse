@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:logger/logger.dart';
+import 'package:skripsi_warehouse/module/input_parts/widget/q_dialog_delete.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:skripsi_warehouse/module/input_parts/widget/q_dialog.dart';
 import 'package:skripsi_warehouse/module/input_parts/widget/q_dialog_no_empty.dart';
@@ -7,11 +9,22 @@ import '../../../main.dart';
 import '../view/input_parts_view.dart';
 
 class InputPartsController extends GetxController {
+  final Map? item;
+  InputPartsController(this.item);
+  var log = Logger();
+
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
     stockController.text = 0.toString();
+    if (item != null) {
+      log.w(item);
+      productNumberController.text = item!['part_number'];
+      productNameController.text = item!['part_name'];
+      stockController.text = item!['stock'].toString();
+      minimalStockController.text = item!['minimum'].toString();
+      idPart = item!["id"];
+    }
   }
 
   InputPartsView? view;
@@ -19,6 +32,7 @@ class InputPartsController extends GetxController {
   TextEditingController productNameController = TextEditingController();
   TextEditingController stockController = TextEditingController();
   TextEditingController minimalStockController = TextEditingController();
+  int? idPart;
 
   inputPartData() async {
     debugPrint("data print");
@@ -45,21 +59,55 @@ class InputPartsController extends GetxController {
       return;
     }
 
-    try {
-      await supabase.from('part').insert({
-        'part_number': productNumberController.text,
-        'part_name': productNameController.text,
-        'stock': stockController.text,
-        'minimum': minimalStockController.text,
-      });
+    if (item == null) {
+      var test = item == null;
+      debugPrint(test.toString());
+      try {
+        await supabase.from('part').insert({
+          'part_number': productNumberController.text,
+          'part_name': productNameController.text,
+          'stock': stockController.text,
+          'minimum': minimalStockController.text,
+        });
 
-      Get.dialog(QDialog(
-        message: "berhasil input data",
-        ontap: () {
-          Get.back();
-        },
-      ));
-      // Get.back();
+        Get.dialog(QDialog(
+          message: "berhasil input data",
+          ontap: () {
+            Get.back();
+          },
+        ));
+        // Get.back();
+      } catch (e) {
+        debugPrint(e.toString());
+        if (e is PostgrestException) {
+          final errorMessage = e.message;
+          Get.dialog(QDialongNoEmpty(title: errorMessage));
+        }
+      }
+    } else {
+      if (item!['stock'] != int.parse(stockController.text)) {
+        Get.dialog(QDialogDelete(
+          message:
+              "Apakah anda yakin untuk merubah stock yang ada, ini dapat mengakibatkan bug pada sistem",
+          ontap: () {
+            doUpdate();
+          },
+        ));
+      } else {
+        doUpdate();
+      }
+    }
+  }
+
+  doUpdate() async {
+    try {
+      Map dataChange = {
+        "part_name": productNumberController.text,
+        "stock": stockController.text,
+        "minimum": minimalStockController.text
+      };
+
+      await supabase.from('part').update(dataChange).match({'id': idPart});
     } catch (e) {
       debugPrint(e.toString());
       if (e is PostgrestException) {
@@ -67,5 +115,7 @@ class InputPartsController extends GetxController {
         Get.dialog(QDialongNoEmpty(title: errorMessage));
       }
     }
+    Get.back();
+    Get.back();
   }
 }

@@ -123,12 +123,13 @@ class RakLocationView extends StatelessWidget {
                             return InkWell(
                               onTap: () {
                                 controller.log.d("ini data log");
-                                controller.log.d(data);
+                                controller.log.e(data);
                                 if (transaction.isEmpty) {
                                   Get.to(InputScansView(
                                     data: {
                                       "head_location_id": controller.idHead
                                     },
+                                    dataSearch: item,
                                   ))?.then((value) {
                                     controller.getDataLocation();
                                     controller.terisi = 0;

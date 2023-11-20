@@ -9,15 +9,15 @@ import '../../../main.dart';
 class LoginController extends GetxController {
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
-    textEmail.text = "ilham@gmail.com";
+    // textEmail.text = "ilham@gmail.com";
+    textEmail.text = "admin@admin.com";
     textPassword.text = "password";
   }
 
   @override
   void onClose() {
-    // TODO: implement onClose
+    debugPrint("berhasil di clone halaman login");
     super.onClose();
   }
 

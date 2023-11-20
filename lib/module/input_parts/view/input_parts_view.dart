@@ -1,20 +1,28 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import '../controller/input_parts_controller.dart';
-import 'package:skripsi_warehouse/core.dart';
 import 'package:get/get.dart';
 
+import 'package:skripsi_warehouse/core.dart';
+
+import '../controller/input_parts_controller.dart';
+
 class InputPartsView extends StatelessWidget {
-  const InputPartsView({Key? key}) : super(key: key);
+  final Map? item;
+  const InputPartsView({
+    Key? key,
+    this.item,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<InputPartsController>(
-      init: InputPartsController(),
+      init: InputPartsController(item),
       builder: (controller) {
         controller.view = this;
 
         return Scaffold(
-          appBar: const WarehouseAppbar(title: "Add a Part"),
+          appBar: WarehouseAppbar(
+              title: item != null ? "Updated a Part" : "Add a Part"),
           body: SingleChildScrollView(
             child: Container(
               padding: const EdgeInsets.all(10.0),
@@ -22,14 +30,15 @@ class InputPartsView extends StatelessWidget {
                 children: [
                   WarehouseTextfield(
                       hintTitle: "Part Number",
-                      controller: controller.productNumberController),
+                      controller: controller.productNumberController,
+                      readOnly: item != null),
                   WarehouseTextfield(
                       hintTitle: "Part Name",
                       controller: controller.productNameController),
                   WarehouseTextfield(
                       hintTitle: "Stock",
                       controller: controller.stockController,
-                      readOnly: true),
+                      readOnly: item == null),
                   WarehouseTextfield(
                       hintTitle: "Minimum",
                       controller: controller.minimalStockController),
@@ -37,7 +46,9 @@ class InputPartsView extends StatelessWidget {
                     height: 20.0,
                   ),
                   WarehouseButton(
-                      ontap: () async => controller.inputPartData(),
+                      ontap: () {
+                        controller.inputPartData();
+                      },
                       title: "Simpan"),
                 ],
               ),
