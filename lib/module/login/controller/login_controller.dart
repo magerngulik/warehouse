@@ -58,6 +58,9 @@ class LoginController extends GetxController {
             }
           } catch (e) {
             debugPrint(e.toString());
+            Get.dialog(const QDialog(
+                message:
+                    "Gagal Login coba check email dan password dengan benar"));
           }
         },
       );

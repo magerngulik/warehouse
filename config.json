@@ -4,7 +4,9 @@
         "search_part",
         "search_setting",
         "report_menu",
-        "admin_detail_item"
+        "admin_detail_item",
+        "admin_manage_user",
+        "admin_detail_user"
     ],
     "module_directory_name": "module",
     "experimental_mode": false,

@@ -36,7 +36,7 @@ class AdminMenuController extends GetxController {
     },
     {
       "title": "Kelola Akun",
-      "ontap": const AdminListItemsView(),
+      "ontap": const AdminManageUserView(),
       "image": "assets/icons/kelola akun.png"
     },
   ];
