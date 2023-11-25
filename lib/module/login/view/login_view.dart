@@ -129,33 +129,33 @@ class LoginView extends StatelessWidget {
                   const SizedBox(
                     height: 50.0,
                   ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text(
-                        "Belum memiliki akun?",
-                        style: TextStyle(
-                          fontSize: 18.0,
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 5.0,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          Get.to(const RegisterUserView());
-                        },
-                        child: const Text(
-                          "Daftar",
-                          style: TextStyle(
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                  // Row(
+                  //   crossAxisAlignment: CrossAxisAlignment.start,
+                  //   mainAxisAlignment: MainAxisAlignment.center,
+                  //   children: [
+                  //     const Text(
+                  //       "Belum memiliki akun?",
+                  //       style: TextStyle(
+                  //         fontSize: 18.0,
+                  //       ),
+                  //     ),
+                  //     const SizedBox(
+                  //       width: 5.0,
+                  //     ),
+                  //     InkWell(
+                  //       onTap: () {
+                  //         Get.to(const RegisterUserView());
+                  //       },
+                  //       child: const Text(
+                  //         "Daftar",
+                  //         style: TextStyle(
+                  //           fontSize: 18.0,
+                  //           fontWeight: FontWeight.bold,
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
                 ],
               ),
             ),
