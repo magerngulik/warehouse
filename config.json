@@ -6,7 +6,8 @@
         "report_menu",
         "admin_detail_item",
         "admin_manage_user",
-        "admin_detail_user"
+        "admin_detail_user",
+        "register_user"
     ],
     "module_directory_name": "module",
     "experimental_mode": false,

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:skripsi_warehouse/core.dart';
+import 'package:skripsi_warehouse/module/admin_detail_user/widget/q_my_drop_down_2.dart';
 import 'package:skripsi_warehouse/module/admin_detail_user/widget/q_textfield_simple.dart';
 
 import '../controller/admin_detail_user_controller.dart';
@@ -47,12 +48,84 @@ class AdminDetailUserView extends StatelessWidget {
                           hintText: "Username",
                           title: "Username",
                         ),
-                        QMyDropdown(
+                        // QMyDropdown(
+                        //   data: const ["admin", "super admin", "user"],
+                        //   firstData: controller.roleUserController.text,
+                        //   onChanged: (value) {
+                        //     controller.roleUserController.text = value;
+                        //   },
+                        // ),
+                        // const Padding(
+                        //   padding: EdgeInsets.symmetric(horizontal: 12),
+                        //   child: Text(
+                        //     "Selected Role",
+                        //     style: TextStyle(
+                        //       fontSize: 18.0,
+                        //     ),
+                        //   ),
+                        // ),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 12),
+                          child: Text(
+                            "Selected Role",
+                            style: TextStyle(
+                              fontSize: 18.0,
+                            ),
+                          ),
+                        ),
+                        QMyDropdown2(
                           data: const ["admin", "super admin", "user"],
                           firstData: controller.roleUserController.text,
                           onChanged: (value) {
                             controller.roleUserController.text = value;
+                            debugPrint(value);
                           },
+                          title: "Position",
+                        ),
+                        const SizedBox(
+                          height: 10.0,
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 12),
+                          child: Text(
+                            "Job Level",
+                            style: TextStyle(
+                              fontSize: 18.0,
+                            ),
+                          ),
+                        ),
+                        QMyDropdown2(
+                          data: const ["Leader", "Member"],
+                          firstData: controller.jobLevelController.text,
+                          onChanged: (value) {
+                            controller.jobLevelController.text = value;
+                            debugPrint(value);
+                          },
+                          title: "Position",
+                        ),
+                        const SizedBox(
+                          height: 20.0,
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 12),
+                          child: Text(
+                            "Position",
+                            style: TextStyle(
+                              fontSize: 18.0,
+                            ),
+                          ),
+                        ),
+                        QMyDropdown2(
+                          data: const ["Pulling", "Preperation"],
+                          firstData: controller.positionController.text,
+                          onChanged: (value) {
+                            controller.positionController.text = value;
+                            debugPrint(value);
+                          },
+                          title: "Position",
+                        ),
+                        const SizedBox(
+                          height: 20.0,
                         ),
                         Container(
                           margin: const EdgeInsets.symmetric(horizontal: 10.0),

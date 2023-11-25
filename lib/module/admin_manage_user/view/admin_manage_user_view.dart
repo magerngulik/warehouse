@@ -46,6 +46,13 @@ class AdminManageUserView extends StatelessWidget {
                     );
                   },
                 ),
+          floatingActionButton: FloatingActionButton(
+            backgroundColor: baseColor,
+            child: const Icon(Icons.add),
+            onPressed: () {
+              Get.to(const RegisterUserView());
+            },
+          ),
         );
       },
     );

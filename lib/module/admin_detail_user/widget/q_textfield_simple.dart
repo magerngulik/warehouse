@@ -34,6 +34,7 @@ class QtextfieldSimple extends StatelessWidget {
           margin: const EdgeInsets.only(),
           child: TextFormField(
             initialValue: null,
+            
             readOnly: readOnly ?? false,
             controller: controller,
             decoration: InputDecoration(

@@ -12,11 +12,24 @@ class AdminDetailUserController extends GetxController {
   var emailController = TextEditingController();
   var usernameController = TextEditingController();
   var roleUserController = TextEditingController();
+  var positionController = TextEditingController();
+  var jobLevelController = TextEditingController();
   var log = Logger();
   String? idUserUpdate;
   bool isLoading = false;
 
   var adminManagerController = Get.put(AdminManageUserController());
+
+  @override
+  void onClose() {
+    // TODO: implement onClose
+    super.onClose();
+    emailController.dispose();
+    usernameController.dispose();
+    roleUserController.dispose();
+    positionController.dispose();
+    jobLevelController.dispose();
+  }
 
   @override
   void onInit() {
@@ -26,6 +39,8 @@ class AdminDetailUserController extends GetxController {
       emailController.text = data!['email'];
       usernameController.text = data!['username'];
       roleUserController.text = data!['role'];
+      positionController.text = data!['position'];
+      jobLevelController.text = data!['job_level'];
       idUserUpdate = data!['id'];
 
       log.i({
@@ -33,6 +48,8 @@ class AdminDetailUserController extends GetxController {
         "username": usernameController.text,
         "role user": roleUserController.text,
         "id user": idUserUpdate,
+        "position": positionController.text,
+        "job level": jobLevelController.text,
       });
     }
   }
@@ -48,12 +65,16 @@ class AdminDetailUserController extends GetxController {
     log.w({
       "username": usernameController.text,
       "role user": roleUserController.text,
-      "id user": idUserUpdate
+      "id user": idUserUpdate,
+      "position": positionController.text,
+      "job level": jobLevelController.text,
     });
 
     Map dataChange = {
       "username": usernameController.text,
-      "role": roleUserController.text
+      "role": roleUserController.text,
+      "job_level": jobLevelController.text,
+      "position": positionController.text,
     };
 
     isLoading = true;
