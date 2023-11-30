@@ -48,9 +48,14 @@ class LoginController extends GetxController {
             var username = profile[0]['username'];
             var role = profile[0]['role'];
             var status = profile[0]['status'];
+            var jobLevel = profile[0]['job_level'];
 
             saveToLocal(
-                uuid: uuid, email: email, username: username, role: role);
+                uuid: uuid,
+                email: email,
+                username: username,
+                role: role,
+                jobLevel: jobLevel);
             if (status == "tidak") {
               Get.dialog(const QDialog(
                   message:
@@ -94,7 +99,11 @@ class LoginController extends GetxController {
           debugPrint('Gagal menambahkan pengguna: ${insertResponse.error}');
         } else {
           saveToLocal(
-              uuid: id, email: email!, username: username!, role: "user");
+            uuid: id,
+            email: email!,
+            username: username!,
+            role: "user",
+          );
           Get.to(const DashboardView());
         }
       } catch (e) {
@@ -116,17 +125,22 @@ class LoginController extends GetxController {
     }
   }
 
-  saveToLocal(
-      {required String uuid,
-      required String email,
-      required String username,
-      required String role}) async {
+  saveToLocal({
+    required String uuid,
+    required String email,
+    required String username,
+    required String role,
+    String? jobLevel,
+  }) async {
     final prefs = await SharedPreferences.getInstance();
     var local = SharedPreferencesService(prefs);
     local.saveString("uuid", uuid);
     local.saveString("email", email);
     local.saveString("username", username);
     local.saveString("role", role);
+    if (jobLevel != null) {
+      local.saveString("job_level", jobLevel);
+    }
   }
 
   void exitApp() {

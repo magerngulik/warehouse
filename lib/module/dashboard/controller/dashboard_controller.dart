@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:skripsi_warehouse/core.dart';
 import 'package:skripsi_warehouse/main.dart';
 import 'package:skripsi_warehouse/module/input_parts/widget/q_dialog_logout.dart';
@@ -11,6 +12,7 @@ class DashboardController extends GetxController {
   @override
   void onInit() {
     deleyProcess();
+    getJobLevel();
     super.onInit();
   }
 
@@ -18,10 +20,17 @@ class DashboardController extends GetxController {
   String username = "";
   String? userId;
   String? email;
+  String jobLevel = "";
 
   deleyProcess() async {
     Future.delayed(const Duration(seconds: 3));
     await getuser();
+  }
+
+  getJobLevel() async {
+    var preft = await SharedPreferences.getInstance();
+    var dataLocal = SharedPreferencesService(preft);
+    jobLevel = dataLocal.getString("job_level");
   }
 
   getuser() async {

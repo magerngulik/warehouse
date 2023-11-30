@@ -59,33 +59,54 @@ class DashboardView extends StatelessWidget {
           body: SingleChildScrollView(
             child: Container(
               padding: const EdgeInsets.all(10.0),
-              child: Column(
-                children: List.generate(controller.menu.length, (index) {
-                  var item = controller.menu[index];
-                  return SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    child: InkWell(
-                      onTap: () {
-                        Get.to(item['onclick']);
-                      },
-                      child: Card(
-                        color: Colors.white,
-                        elevation: 2,
-                        child: Padding(
-                          padding: const EdgeInsets.all(20.0),
-                          child: Text(
-                            "${item['menu']}",
-                            style: const TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                            ),
+              child: Column(children: [
+                SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  child: InkWell(
+                    onTap: () {
+                      Get.to(const ListPartView());
+                    },
+                    child: const Card(
+                      color: Colors.white,
+                      elevation: 2,
+                      child: Padding(
+                        padding: EdgeInsets.all(20.0),
+                        child: Text(
+                          "List Part Area F",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
                     ),
-                  );
-                }),
-              ),
+                  ),
+                ),
+                controller.jobLevel == "Leader"
+                    ? SizedBox(
+                        width: MediaQuery.of(context).size.width,
+                        child: InkWell(
+                          onTap: () {
+                            Get.to(const ReportView());
+                          },
+                          child: const Card(
+                            color: Colors.white,
+                            elevation: 2,
+                            child: Padding(
+                              padding: EdgeInsets.all(20.0),
+                              child: Text(
+                                "Report",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
+                    : Container()
+              ]),
             ),
           ),
         );
