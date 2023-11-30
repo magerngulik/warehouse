@@ -47,9 +47,16 @@ class LoginController extends GetxController {
             var email = profile[0]['email'];
             var username = profile[0]['username'];
             var role = profile[0]['role'];
+            var status = profile[0]['status'];
 
             saveToLocal(
                 uuid: uuid, email: email, username: username, role: role);
+            if (status == "tidak") {
+              Get.dialog(const QDialog(
+                  message:
+                      "Akun anda telah di ban oleh admin, gunakan akun lain untuk menggunakan aplikasi ini"));
+              return;
+            }
 
             if (role == "admin") {
               Get.offAll(const AdminMenuView());

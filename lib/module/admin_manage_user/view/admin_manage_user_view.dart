@@ -41,6 +41,15 @@ class AdminManageUserView extends StatelessWidget {
                         child: ListTile(
                           title: Text("${item['username']}"),
                           subtitle: Text("${item['email']}"),
+                          trailing: IconButton(
+                            onPressed: () {
+                              controller.showDialogDelete(item['id']);
+                            },
+                            icon: const Icon(
+                              Icons.delete,
+                              size: 24.0,
+                            ),
+                          ),
                         ),
                       ),
                     );
