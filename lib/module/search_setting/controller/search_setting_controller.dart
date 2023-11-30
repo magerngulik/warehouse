@@ -20,7 +20,7 @@ class SearchSettingController extends GetxController {
 
   SearchSettingView? view;
 
-  List<String> dataSearch = ["part number", "ruang kosong"];
+  List<String> dataSearch = ["Part Number", "Ruang Kosong"];
   String searchField = "part number";
   bool isAcending = true;
 
