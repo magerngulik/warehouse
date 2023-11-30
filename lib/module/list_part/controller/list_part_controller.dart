@@ -18,7 +18,10 @@ class ListPartController extends GetxController {
 
   getHeadTable() async {
     try {
-      var data = await supabase.from("head_location").select("*");
+      var data = await supabase
+          .from("head_location")
+          .select("*")
+          .order('created_at', ascending: true);
       // debugPrint("data: $data");
       menu = RxList<Map<String, dynamic>>.from(data);
       // debugPrint("menu: $menu");

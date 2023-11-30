@@ -34,9 +34,9 @@ class SearchPartController extends GetxController {
 
     fieldName = local.getString("searchField");
     if (fieldName == "") {
-      fieldName = "part number";
+      fieldName = "Part Number";
       partFilters = true;
-    } else if (fieldName == "part number") {
+    } else if (fieldName == "Part Number") {
       partFilters = true;
     } else {
       partFilters = false;
@@ -66,7 +66,7 @@ class SearchPartController extends GetxController {
         asyncFunction: () async {
           debouncer.call(
             () {
-              if (fieldName == "part number") {
+              if (fieldName == "Part Number") {
                 debugPrint("kondisi location name");
                 debugPrint("data field: $fieldName");
                 processSearchPart();
@@ -107,6 +107,7 @@ class SearchPartController extends GetxController {
       log.d(data);
 
       dataPart = List<Map<String, dynamic>>.from(data);
+      update();
       log.i(dataPart);
     } catch (e) {
       debugPrint(e.toString());

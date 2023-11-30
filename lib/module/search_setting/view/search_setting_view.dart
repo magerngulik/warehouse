@@ -57,7 +57,8 @@ class SearchSettingView extends StatelessWidget {
                                 borderRadius: const BorderRadius.all(
                                   Radius.circular(5.0),
                                 ),
-                                color: controller.searchField == item
+                                color: controller.searchField.toLowerCase() ==
+                                        item.toLowerCase()
                                     ? baseColor
                                     : Colors.transparent),
                             child: Padding(
@@ -82,7 +83,7 @@ class SearchSettingView extends StatelessWidget {
                   const SizedBox(
                     height: 20.0,
                   ),
-                  controller.searchField == "part number"
+                  controller.searchField == "Part Number"
                       ? Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [

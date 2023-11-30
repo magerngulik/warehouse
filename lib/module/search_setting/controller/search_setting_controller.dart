@@ -14,14 +14,14 @@ class SearchSettingController extends GetxController {
 
   @override
   void onClose() {
-    // TODO: implement onClose
     super.onClose();
+    debugPrint("List Search");
   }
 
   SearchSettingView? view;
 
   List<String> dataSearch = ["Part Number", "Ruang Kosong"];
-  String searchField = "part number";
+  String searchField = "Part Number";
   bool isAcending = true;
 
   bool isMinim = true;
