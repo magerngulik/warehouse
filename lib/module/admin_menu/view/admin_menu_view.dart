@@ -35,6 +35,7 @@ class AdminMenuView extends StatelessWidget {
             physics: const ScrollPhysics(),
             itemBuilder: (BuildContext context, int index) {
               var item = controller.halaman[index];
+
               return InkWell(
                 onTap: () {
                   Navigator.push(

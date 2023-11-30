@@ -25,6 +25,7 @@ class AdminManageUserController extends GetxController {
           .from('user')
           .select('*')
           .eq('status', 'aktif')
+          .not('id', 'eq', supabase.auth.currentUser!.id)
           .order('created_at', ascending: true);
 
       user = List.from(data);

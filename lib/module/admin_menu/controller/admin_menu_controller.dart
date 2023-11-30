@@ -39,6 +39,11 @@ class AdminMenuController extends GetxController {
       "ontap": const AdminManageUserView(),
       "image": "assets/icons/kelola akun.png"
     },
+    {
+      "title": "Report",
+      "ontap": const ReportView(),
+      "image": "assets/icons/report.png"
+    },
   ];
 
   var isLoading = false.obs;
@@ -66,3 +71,4 @@ class AdminMenuController extends GetxController {
     }
   }
 }
+
