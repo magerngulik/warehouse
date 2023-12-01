@@ -101,8 +101,11 @@ class SearchPartController extends GetxController {
 
   processSearchPart() async {
     try {
-      final data = await supabase.rpc('searchpartnumber',
-          params: {"part_number_params": textSearch.text, "isminim": isMinim});
+      final data = await supabase.rpc('searchpartnumber', params: {
+        "part_number_params": textSearch.text,
+        "isminim": isMinim,
+        "order_by_created_at": isAscending
+      });
 
       log.d(data);
 
