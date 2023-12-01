@@ -18,73 +18,84 @@ class ReportView extends StatelessWidget {
 
         return Scaffold(
           appBar: const WarehouseAppbar(title: "Report Menu"),
-          body: SingleChildScrollView(
-            child: Container(
-              child: Column(
-                children: [
-                  Container(
-                    height: MediaQuery.of(context).size.height / 4,
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(color: baseColor),
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: Container(
-                        height: 150.0,
-                        width: 150.0,
-                        decoration: const BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage(
-                              "assets/icons/inbox.png",
-                            ),
-                            fit: BoxFit.cover,
-                          ),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(
-                              8.0,
+          body: controller.isLoading
+              ? const Center(
+                  child: CircularProgressIndicator(),
+                )
+              : SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Container(
+                        height: MediaQuery.of(context).size.height / 4,
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(color: baseColor),
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: Container(
+                            height: 150.0,
+                            width: 150.0,
+                            decoration: const BoxDecoration(
+                              image: DecorationImage(
+                                image: AssetImage(
+                                  "assets/icons/inbox.png",
+                                ),
+                                fit: BoxFit.cover,
+                              ),
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(
+                                  8.0,
+                                ),
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Report Data",
-                          style: TextStyle(
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  Column(
-                    children: [
+                      const QtitleReport(title: "Report Data"),
                       QButtonDownload(
                           ontap: () {
-                            debugPrint("ontap 1");
-                            controller.testGenerate();
+                            controller.generateReportData();
                           },
                           image: "assets/icons/exl.png",
                           title: "Download (xlsx)"),
+                      const QtitleReport(title: "Transaction Data"),
                       QButtonDownload(
                           ontap: () {
-                            debugPrint("ontap 2");
+                            controller.generateTransactionData();
                           },
-                          image: "assets/icons/pdf.png",
-                          title: "Download (xlsx)")
+                          image: "assets/icons/exl.png",
+                          title: "Download (xlsx)"),
                     ],
-                  )
-                ],
-              ),
-            ),
-          ),
+                  ),
+                ),
         );
       },
+    );
+  }
+}
+
+class QtitleReport extends StatelessWidget {
+  final String title;
+  const QtitleReport({
+    super.key,
+    required this.title,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            title,
+            style: const TextStyle(
+              fontSize: 20.0,
+              fontWeight: FontWeight.bold,
+            ),
+          )
+        ],
+      ),
     );
   }
 }
