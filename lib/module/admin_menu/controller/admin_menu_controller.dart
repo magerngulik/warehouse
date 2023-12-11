@@ -62,6 +62,7 @@ class AdminMenuController extends GetxController {
     );
   }
 
+
   Future<void> logout() async {
     try {
       await supabase.auth.signOut();
@@ -71,4 +72,3 @@ class AdminMenuController extends GetxController {
     }
   }
 }
-

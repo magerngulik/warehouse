@@ -52,16 +52,6 @@ class ListPartView extends StatelessWidget {
               ),
             ),
           ),
-          floatingActionButton: FloatingActionButton(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(50),
-            ),
-            backgroundColor: baseColor,
-            child: const Icon(Icons.add),
-            onPressed: () {
-              Get.to(const InputScansView());
-            },
-          ),
         );
       },
     );

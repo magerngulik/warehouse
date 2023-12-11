@@ -167,9 +167,10 @@ class RakLocationView extends StatelessWidget {
                                   child: Text(
                                     newTitle,
                                     textAlign: TextAlign.center,
-                                    style: const TextStyle(
-                                      color: Colors.black,
-                                    ),
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize:
+                                            controller.maxRak > 6 ? 6 : 13),
                                   ),
                                 ),
                               ),

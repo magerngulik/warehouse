@@ -10,8 +10,8 @@ class LoginController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    // textEmail.text = "ilham@gmail.com";
-    textEmail.text = "admin@admin.com";
+    textEmail.text = "ilham@gmail.com";
+    // textEmail.text = "admin@admin.com";
     textPassword.text = "password";
   }
 
@@ -49,13 +49,15 @@ class LoginController extends GetxController {
             var role = profile[0]['role'];
             var status = profile[0]['status'];
             var jobLevel = profile[0]['job_level'];
+            var position = profile[0]['position'];
 
             saveToLocal(
                 uuid: uuid,
                 email: email,
                 username: username,
                 role: role,
-                jobLevel: jobLevel);
+                jobLevel: jobLevel,
+                position: position);
             if (status == "tidak") {
               Get.dialog(const QDialog(
                   message:
@@ -99,11 +101,11 @@ class LoginController extends GetxController {
           debugPrint('Gagal menambahkan pengguna: ${insertResponse.error}');
         } else {
           saveToLocal(
-            uuid: id,
-            email: email!,
-            username: username!,
-            role: "user",
-          );
+              uuid: id,
+              email: email!,
+              username: username!,
+              role: "user",
+              position: "Pulling");
           Get.to(const DashboardView());
         }
       } catch (e) {
@@ -125,19 +127,20 @@ class LoginController extends GetxController {
     }
   }
 
-  saveToLocal({
-    required String uuid,
-    required String email,
-    required String username,
-    required String role,
-    String? jobLevel,
-  }) async {
+  saveToLocal(
+      {required String uuid,
+      required String email,
+      required String username,
+      required String role,
+      String? jobLevel,
+      required String position}) async {
     final prefs = await SharedPreferences.getInstance();
     var local = SharedPreferencesService(prefs);
     local.saveString("uuid", uuid);
     local.saveString("email", email);
     local.saveString("username", username);
     local.saveString("role", role);
+    local.saveString("position", position);
     if (jobLevel != null) {
       local.saveString("job_level", jobLevel);
     }

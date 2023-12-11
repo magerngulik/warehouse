@@ -21,6 +21,7 @@ class DashboardController extends GetxController {
   String? userId;
   String? email;
   String jobLevel = "";
+  String position = "";
 
   deleyProcess() async {
     Future.delayed(const Duration(seconds: 3));
@@ -31,6 +32,15 @@ class DashboardController extends GetxController {
     var preft = await SharedPreferences.getInstance();
     var dataLocal = SharedPreferencesService(preft);
     jobLevel = dataLocal.getString("job_level");
+    position = dataLocal.getString("position");
+  }
+
+  openDialogPosition() {
+    Get.dialog(QDialog(message: "Posisi anda saat ini adalah $position"));
+  }
+
+  openDialogJobLevel() {
+    Get.dialog(QDialog(message: "Job Level anda saat ini adalah $jobLevel"));
   }
 
   getuser() async {

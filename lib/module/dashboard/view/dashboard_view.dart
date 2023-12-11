@@ -31,20 +31,20 @@ class DashboardView extends StatelessWidget {
                   ),
                   otherAccountsPictures: const [],
                 ),
-                ListTile(
-                  leading: const Icon(Icons.lock),
-                  title: const Text("Password"),
-                  onTap: () {},
-                ),
+                // ListTile(
+                //   leading: const Icon(Icons.lock),
+                //   title: const Text("Password"),
+                //   onTap: () {},
+                // ),
                 ListTile(
                   leading: const Icon(Icons.leaderboard_outlined),
                   title: const Text("Job Level "),
-                  onTap: () {},
+                  onTap: () => controller.openDialogJobLevel(),
                 ),
                 ListTile(
                   leading: const Icon(Icons.badge),
                   title: const Text("Position"),
-                  onTap: () {},
+                  onTap: () => controller.openDialogPosition(),
                 ),
                 ListTile(
                   leading: const Icon(
