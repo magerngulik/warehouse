@@ -9,6 +9,7 @@ import 'package:skripsi_warehouse/shared/widget/loading/q_loading.dart';
 import '../view/dashboard_view.dart';
 
 class DashboardController extends GetxController {
+  
   @override
   void onInit() {
     deleyProcess();
