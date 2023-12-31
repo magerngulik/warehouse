@@ -5,9 +5,6 @@ import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:skripsi_warehouse/core.dart';
 import 'package:skripsi_warehouse/main.dart';
-import 'package:skripsi_warehouse/module/input_parts/widget/q_dialog_delete.dart';
-
-import '../view/updated_scans_view.dart';
 
 class UpdatedScansController extends GetxController {
   var log = Logger();
