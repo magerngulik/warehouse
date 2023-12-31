@@ -56,7 +56,6 @@ class InputScansController extends GetxController {
   String idUserLogin = "";
   String emailUser = "";
   String usernameUser = "";
-
   //location search
 
   var log = Logger();
