@@ -1,4 +1,4 @@
-# Halaman Login
+# Halaman Dashboard
 pada awal halaman ini akan menjalankan beberapa fungsi seperti ini:
 ```dart
   //on init akan berjalan di awal
