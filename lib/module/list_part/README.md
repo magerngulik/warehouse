@@ -1,5 +1,7 @@
 # Halaman List Part
 pada halaman ini akan melakukan load pada tabel head_location sebagai parameter untuk halaman selanjutnya
+![list_part](/assets/image/menu_admin/list_part.png)
+
 ```dart
 //ini list akan di tampilkan pada view
 var menu = [].obs;

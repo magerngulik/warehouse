@@ -1,9 +1,9 @@
 # Halaman Admin Menu
 pada menu admin ini akan menampilkan akan menampilkan navigasi ke beberapa halaman. 
-- [head location]()
-- [location part]()
+- [head location](../head_location/README.md)
+- [location part](../location_part/README.md)
 - [list part](../list_part/README.md)
-- [admin list item]()
+- [admin list item](../admin_list_items/README.md)
 - [admin manage user]() 
 - [report](../report/README.md) 
 <br>
@@ -13,11 +13,6 @@ untuk tampilan halaman ini sebagai berikut
 
 ```dart
 List<Map<String, dynamic>> halaman = [
-    // {
-    //   "title": "Input Part Items",
-    //   "ontap": const InputPartsView(),
-    //   "image": "assets/icons/input item.png"
-    // },
     {
       "title": "Input Head Location",
       "ontap": const HeadLocationView(),

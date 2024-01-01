@@ -2,6 +2,7 @@
 ini merupakan halaman setelah dari menu admin untuk tampilan dari menu ini seperti ini:
 ![menu_admin](/assets/image/menu_admin/location_part.png)
 
+
 pada halaman ini akan menggunakan stream yang diatur pada controller seperti berikut ini:
 ```dart
 //fungsi di bawah ini akan melakukan stream ke tabel head_location
