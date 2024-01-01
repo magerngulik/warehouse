@@ -86,6 +86,4 @@ doRegister() async {
     //update tampian untuk mematikan kondisi dari ui nya
     update();
   }
-
-
 ```

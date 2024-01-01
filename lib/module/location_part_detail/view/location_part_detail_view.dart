@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:skripsi_warehouse/shared/services/warehouse_services.dart';
-import '../controller/location_part_detail_controller.dart';
 import 'package:skripsi_warehouse/core.dart';
 import 'package:get/get.dart';
 

@@ -1,33 +1,19 @@
-import 'package:flutter/material.dart';
-import '../controller/location_part_controller.dart';
-import 'package:skripsi_warehouse/core.dart';
-import 'package:get/get.dart';
+# Halaman Location Part
+ini merupakan halaman setelah dari menu admin untuk tampilan dari menu ini seperti ini:
+![menu_admin](/assets/image/menu_admin/location_part.png)
 
-class LocationPartView extends StatelessWidget {
-  const LocationPartView({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return GetBuilder<LocationPartController>(
-      init: LocationPartController(),
-      builder: (controller) {
-        controller.view = this;
-
-        return Scaffold(
-          appBar: AppBar(
-            backgroundColor: Colors.white,
-            iconTheme: const IconThemeData(
-              color: Colors.black,
-            ),
-            title: const Text(
-              "Location Part",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
-              ),
-            ),
-          ),
-          body: StreamBuilder(
+pada halaman ini akan menggunakan stream yang diatur pada controller seperti berikut ini:
+```dart
+//fungsi di bawah ini akan melakukan stream ke tabel head_location
+Stream<List<Map<String, dynamic>>> getHeadLocation() {
+    return supabase
+        .from('head_location')
+        .stream(primaryKey: ['id']).order('created_at', ascending: true);
+  }
+```
+dalam view akan diload kedalam stream seperti berikut ini:
+```dart
+StreamBuilder(
             stream: controller.getHeadLocation(),
             builder: (context, snapshot) {
               if (!snapshot.hasError) {
@@ -63,6 +49,7 @@ class LocationPartView extends StatelessWidget {
                         padding: const EdgeInsets.all(15.0),
                         child: Text(
                           "${item['location_name']}",
+                          //data di consume pad a bagian ini
                           style: const TextStyle(
                             fontSize: 20.0,
                           ),
@@ -74,8 +61,4 @@ class LocationPartView extends StatelessWidget {
               );
             },
           ),
-        );
-      },
-    );
-  }
-}
+```
