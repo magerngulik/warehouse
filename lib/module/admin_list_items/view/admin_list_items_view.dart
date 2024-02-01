@@ -63,13 +63,14 @@ class AdminListItemsView extends StatelessWidget {
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
-                                    "${item['part_name']}",
-                                    style: const TextStyle(
-                                      fontSize: 20.0,
+                                  Expanded(
+                                    child: Text(
+                                      "${item['part_name']}",
+                                      style: const TextStyle(
+                                        fontSize: 20.0,
+                                      ),
                                     ),
                                   ),
-                                  const Spacer(),
                                   IconButton(
                                     onPressed: () {
                                       controller.showDialogDelete(item['id']);

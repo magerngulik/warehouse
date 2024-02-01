@@ -58,6 +58,7 @@ class HeadLocationView extends StatelessWidget {
                                   ),
                                 ),
                                 Expanded(
+                                  flex: 2,
                                   child: Text(
                                     'Action',
                                     textAlign: TextAlign.center,
@@ -101,6 +102,7 @@ class HeadLocationView extends StatelessWidget {
                                         ),
                                       ),
                                       Expanded(
+                                        flex: 2,
                                         child: Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
